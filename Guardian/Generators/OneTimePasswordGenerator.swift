@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 import Foundation
+import GuardianObjC
 
 public protocol TOTP {
     func stringCode(time: TimeInterval, formatter: NumberFormatter?) -> String
