@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "Guardian",
     platforms: [
-        .iOS(.v12)
+        .iOS(.v14)
     ],
     products: [
         .library(
@@ -15,8 +15,7 @@ let package = Package(
             ]
         )
     ],
-    dependencies: [
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "GuardianObjC",
@@ -26,7 +25,10 @@ let package = Package(
                 "A0RSA.m",
                 "A0SHA.m"
             ],
-            publicHeadersPath: "."
+            publicHeadersPath: ".",
+            cSettings: [
+                .headerSearchPath(".")
+            ]
         ),
         .target(
             name: "Guardian",
@@ -50,14 +52,9 @@ let package = Package(
             resources: [
                 .process("PrivacyInfo.xcprivacy")
             ],
-            publicHeadersPath: "Crypto",
             cSettings: [
-                .headerSearchPath("Crypto"),
-                .define("SWIFT_BRIDGING_HEADER", to: "Guardian/Guardian.h")
-            ],
-            swiftSettings: [
-                .unsafeFlags(["-import-objc-header", "Guardian/Guardian.h"])
+                .headerSearchPath("Crypto")
             ]
-            )
+        )
     ]
 )
